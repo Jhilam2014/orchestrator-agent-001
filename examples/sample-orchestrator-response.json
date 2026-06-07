@@ -122,5 +122,34 @@
       "Human Agent can modify or add custom agents before activation."
     ],
     "timestamp": "2026-06-07T17:30:00Z"
-  }
+  },
+  "rootWorkspacePolicy": {
+    "enabled": true,
+    "policyPath": "ROOT_WORKSPACE_GENERATION_POLICY.md",
+    "reservedFolders": [
+      "schemas",
+      "examples"
+    ],
+    "requiredRootFolders": [
+      "agents",
+      "workflows",
+      "tasks",
+      "runtime",
+      "registry",
+      "graph",
+      "topology",
+      "deliverables",
+      "human-review",
+      "observability",
+      "docs",
+      "configs",
+      "tests",
+      "scripts",
+      "integrations",
+      "memory",
+      "schemas",
+      "examples"
+    ]
+  },
+  "generatedFileManifestPath": "deliverables/<workflowId>/generated-file-manifest.json"
 }

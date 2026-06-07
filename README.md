@@ -31,3 +31,28 @@ This package upgrades the original orchestrator into a workflow-agnostic product
 ## Human Agent in Loop
 
 Use `schemas/human-agent-control.schema.json` to record human approval, rejection, modification, or custom agent additions. Use `schemas/custom-agent-request.schema.json` when a user manually defines one or more custom agents before activation.
+
+## Root workspace output rule
+
+When this orchestrator accepts or delivers any work, it must generate operational artifacts under dedicated top-level folders at the workspace root. It must not place generated work files inside `schemas/` or `examples/`.
+
+Use this placement:
+
+- agents -> `agents/`
+- workflows -> `workflows/`
+- tasks -> `tasks/`
+- runtimes -> `runtime/`
+- registries -> `registry/`
+- graph artifacts -> `graph/`
+- topology files -> `topology/`
+- final outputs -> `deliverables/`
+- human approvals/custom agent changes -> `human-review/`
+- traces/cost/token logs -> `observability/`
+- generated documentation -> `docs/`
+- tests -> `tests/`
+- scripts -> `scripts/`
+- integrations -> `integrations/`
+- persistent memory -> `memory/`
+
+See `ROOT_WORKSPACE_GENERATION_POLICY.md` and `schemas/workspace-generation.schema.json`.
+

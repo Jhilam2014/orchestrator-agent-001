@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/delivery-manifest.schema.json",
+  "title": "Workflow Delivery Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "workflowId",
+    "deliveryStatus",
+    "summary",
+    "artifacts",
+    "agents",
+    "humanReview",
+    "validation",
+    "nextActions"
+  ],
+  "properties": {
+    "workflowId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "deliveryStatus": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "ready_for_review",
+        "delivered",
+        "blocked",
+        "failed"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "type",
+          "description"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "agents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "agentId",
+          "path",
+          "type"
+        ],
+        "properties": {
+          "agentId": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "humanReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "status",
+        "recordsPath"
+      ],
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string"
+        },
+        "recordsPath": {
+          "type": "string"
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaValid",
+        "testsPassed",
+        "rootPlacementValid"
+      ],
+      "properties": {
+        "schemaValid": {
+          "type": "boolean"
+        },
+        "testsPassed": {
+          "type": "boolean"
+        },
+        "rootPlacementValid": {
+          "type": "boolean"
+        }
+      }
+    },
+    "nextActions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

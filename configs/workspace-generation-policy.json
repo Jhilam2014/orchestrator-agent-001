@@ -1,0 +1,107 @@
+{
+  "workspaceRoot": ".",
+  "reservedFolders": [
+    "schemas",
+    "examples"
+  ],
+  "requiredRootFolders": [
+    "agents",
+    "workflows",
+    "tasks",
+    "runtime",
+    "registry",
+    "graph",
+    "topology",
+    "deliverables",
+    "human-review",
+    "observability",
+    "docs",
+    "configs",
+    "tests",
+    "scripts",
+    "integrations",
+    "memory",
+    "schemas",
+    "examples"
+  ],
+  "placementRules": [
+    {
+      "artifactType": "agent_instruction",
+      "destinationFolder": "agents",
+      "allowedSubfolders": [
+        "generated",
+        "custom",
+        "human"
+      ],
+      "description": "Agent instruction markdown files."
+    },
+    {
+      "artifactType": "workflow_manifest",
+      "destinationFolder": "workflows",
+      "allowedSubfolders": [],
+      "description": "Workflow definition and workflow state files."
+    },
+    {
+      "artifactType": "task_plan",
+      "destinationFolder": "tasks",
+      "allowedSubfolders": [],
+      "description": "Task decomposition and task state files."
+    },
+    {
+      "artifactType": "runtime_definition",
+      "destinationFolder": "runtime",
+      "allowedSubfolders": [
+        "agents",
+        "openai",
+        "tools"
+      ],
+      "description": "Runtime and tool binding definitions."
+    },
+    {
+      "artifactType": "registry_record",
+      "destinationFolder": "registry",
+      "allowedSubfolders": [
+        "agents",
+        "workflows",
+        "artifacts"
+      ],
+      "description": "Lifecycle and registry records."
+    },
+    {
+      "artifactType": "human_review",
+      "destinationFolder": "human-review",
+      "allowedSubfolders": [
+        "requests",
+        "decisions"
+      ],
+      "description": "Human approval and custom-agent modification records."
+    },
+    {
+      "artifactType": "delivery_output",
+      "destinationFolder": "deliverables",
+      "allowedSubfolders": [
+        "validation"
+      ],
+      "description": "Final delivery files and manifests."
+    },
+    {
+      "artifactType": "observability_log",
+      "destinationFolder": "observability",
+      "allowedSubfolders": [],
+      "description": "Execution traces, costs and token logs."
+    }
+  ],
+  "writeGuards": {
+    "blockOperationalArtifactsInReservedFolders": true,
+    "rerouteUnknownArtifactsToRootCategory": true,
+    "requireManifestEntryForEveryGeneratedFile": true
+  },
+  "minimumAcceptanceArtifacts": [
+    "workflows/<workflowId>.workflow.json",
+    "tasks/<workflowId>.tasks.json",
+    "topology/execution/<workflowId>.topology.json",
+    "registry/workflows/<workflowId>.registry.json",
+    "deliverables/<workflowId>/delivery-manifest.json",
+    "observability/<workflowId>/execution-trace.json"
+  ]
+}

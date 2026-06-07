@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/workspace-generation.schema.json",
+  "title": "Workspace Root Generation Policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "workspaceRoot",
+    "reservedFolders",
+    "requiredRootFolders",
+    "placementRules",
+    "writeGuards",
+    "minimumAcceptanceArtifacts"
+  ],
+  "properties": {
+    "workspaceRoot": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reservedFolders": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "requiredRootFolders": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "placementRules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "artifactType",
+          "destinationFolder",
+          "allowedSubfolders",
+          "description"
+        ],
+        "properties": {
+          "artifactType": {
+            "type": "string"
+          },
+          "destinationFolder": {
+            "type": "string"
+          },
+          "allowedSubfolders": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "writeGuards": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blockOperationalArtifactsInReservedFolders",
+        "rerouteUnknownArtifactsToRootCategory",
+        "requireManifestEntryForEveryGeneratedFile"
+      ],
+      "properties": {
+        "blockOperationalArtifactsInReservedFolders": {
+          "type": "boolean"
+        },
+        "rerouteUnknownArtifactsToRootCategory": {
+          "type": "boolean"
+        },
+        "requireManifestEntryForEveryGeneratedFile": {
+          "type": "boolean"
+        }
+      }
+    },
+    "minimumAcceptanceArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    }
+  }
+}

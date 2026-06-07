@@ -17,7 +17,9 @@
     "implementation_plan",
     "validation_plan",
     "risks",
-    "outputs"
+    "outputs",
+    "rootWorkspacePolicy",
+    "generatedFileManifestPath"
   ],
   "properties": {
     "request_summary": {
@@ -218,6 +220,39 @@
     },
     "human_in_loop": {
       "$ref": "human-agent-control.schema.json"
+    },
+    "rootWorkspacePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "policyPath",
+        "reservedFolders",
+        "requiredRootFolders"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "policyPath": {
+          "type": "string"
+        },
+        "reservedFolders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requiredRootFolders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "generatedFileManifestPath": {
+      "type": "string"
     }
   }
 }

@@ -790,3 +790,96 @@ All final structured outputs must validate against `schemas/orchestrator-respons
 - Human approval before irreversible action.
 - Cost awareness before recursion.
 
+
+
+---
+
+## ROOT WORKSPACE ARTIFACT GENERATION POLICY
+
+When accepting, executing, or delivering any work, the orchestrator MUST generate all necessary operational files, agents, runtime definitions, workflow manifests, topology files, human-review records, logs, documentation, tests, and deliverables under dedicated top-level folders at the workspace root.
+
+The orchestrator MUST NOT place generated operational artifacts inside support folders such as `schemas/` or `examples/`.
+
+`schemas/` is reserved only for reusable JSON Schema contracts.
+`examples/` is reserved only for sample/demo payloads.
+
+### Mandatory root folders
+
+The orchestrator must create and maintain these root-level folders whenever needed:
+
+```plaintext
+agents/
+workflows/
+tasks/
+runtime/
+registry/
+graph/
+topology/
+deliverables/
+human-review/
+observability/
+docs/
+configs/
+tests/
+scripts/
+integrations/
+memory/
+schemas/
+examples/
+```
+
+### Runtime artifact placement rules
+
+- Agent instruction files must be created under `agents/`.
+- Custom human-defined agents must be created under `agents/custom/`.
+- Human controller agents must be created under `agents/human/`.
+- AI-generated specialist agents must be created under `agents/generated/`.
+- OpenAI runtime registration files must be created under `runtime/openai/`.
+- Workflow manifests must be created under `workflows/`.
+- Task plans and task state files must be created under `tasks/`.
+- Execution, data, API, and infrastructure topology files must be created under `topology/`.
+- Agent and workflow registry files must be created under `registry/`.
+- Neo4j graph manifests and graph migrations must be created under `graph/`.
+- Human approval requests, decisions, and custom-agent change requests must be created under `human-review/`.
+- Final work outputs and delivery manifests must be created under `deliverables/`.
+- Execution traces, cost reports, and token logs must be created under `observability/`.
+- Generated handover docs, API docs, and architecture docs must be created under `docs/`.
+- Tests and validation scripts must be created under `tests/` and `scripts/`.
+- Integration manifests must be created under `integrations/`.
+- Persistent architectural memory and decision records must be created under `memory/`.
+
+### Required work-acceptance file generation
+
+For every accepted work item, generate or update this minimum artifact set at the workspace root:
+
+```plaintext
+workflows/<workflowId>.workflow.json
+tasks/<workflowId>.tasks.json
+topology/execution/<workflowId>.topology.json
+registry/workflows/<workflowId>.registry.json
+deliverables/<workflowId>/delivery-manifest.json
+observability/<workflowId>/execution-trace.json
+```
+
+If agents are required, additionally generate:
+
+```plaintext
+agents/generated/<agentId>.agent.md
+runtime/agents/<agentId>.runtime.json
+registry/agents/<agentId>.registry.json
+```
+
+If a human needs to approve, modify, or add custom agents, additionally generate:
+
+```plaintext
+human-review/<workflowId>/approval-state.json
+human-review/requests/<requestId>.custom-agent-request.json
+human-review/decisions/<decisionId>.human-decision.json
+agents/custom/<customAgentId>.agent.md
+```
+
+### Existing folder protection
+
+Before writing any file, the orchestrator MUST resolve the artifact category and destination folder. If the target path is inside `schemas/` or `examples/` and the artifact is not a schema or sample example, the write must be rejected and rerouted to the correct root-level folder.
+
+Never bury generated work artifacts inside existing folders merely because those folders already exist.
