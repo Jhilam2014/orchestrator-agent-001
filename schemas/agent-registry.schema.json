@@ -8,6 +8,9 @@
     "registry_version",
     "workspace_id",
     "agents",
+    "human_controllers",
+    "custom_agents",
+    "review_records",
     "created_at",
     "updated_at"
   ],
@@ -33,6 +36,67 @@
     "updated_at": {
       "type": "string",
       "format": "date-time"
+    },
+    "human_controllers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "human_agent_id",
+          "role",
+          "permissions"
+        ],
+        "properties": {
+          "human_agent_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_.:-]+$"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "user",
+              "admin",
+              "architect",
+              "reviewer",
+              "compliance",
+              "security",
+              "operator",
+              "product_owner"
+            ]
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "approve_agent",
+                "reject_agent",
+                "modify_agent",
+                "add_custom_agent",
+                "disable_agent",
+                "archive_agent",
+                "override_cost_function",
+                "approve_execution",
+                "approve_deployment"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "custom_agents": {
+      "type": "array",
+      "items": {
+        "$ref": "agent.schema.json"
+      }
+    },
+    "review_records": {
+      "type": "array",
+      "items": {
+        "$ref": "human-agent-control.schema.json"
+      }
     }
   }
 }

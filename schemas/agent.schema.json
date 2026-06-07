@@ -19,7 +19,11 @@
     "success_criteria",
     "handoff_contract",
     "validation_rules",
-    "termination_condition"
+    "termination_condition",
+    "agent_type",
+    "lifecycle",
+    "provenance",
+    "human_review"
   ],
   "properties": {
     "agent_id": {
@@ -34,6 +38,7 @@
     "level": {
       "type": "string",
       "enum": [
+        "level_0_human_controller",
         "level_1_sme",
         "level_2_lead",
         "level_3_implementation",
@@ -144,6 +149,133 @@
     "termination_condition": {
       "type": "string",
       "minLength": 5
+    },
+    "agent_type": {
+      "type": "string",
+      "enum": [
+        "ai_generated",
+        "human_custom",
+        "human_controller",
+        "system_internal",
+        "reviewer_validator"
+      ]
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "created_by",
+        "requires_human_approval",
+        "last_decision"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "proposed",
+            "pending_human_review",
+            "active",
+            "disabled",
+            "archived",
+            "rejected",
+            "needs_revision"
+          ]
+        },
+        "created_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requires_human_approval": {
+          "type": "boolean"
+        },
+        "last_decision": {
+          "type": "string",
+          "enum": [
+            "none",
+            "approved",
+            "approved_with_changes",
+            "rejected",
+            "needs_revision",
+            "custom_agent_added",
+            "disabled",
+            "archived"
+          ]
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "created_at",
+        "updated_at",
+        "version"
+      ],
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": [
+            "orchestrator_generated",
+            "human_authored",
+            "human_modified",
+            "imported",
+            "system_default"
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "human_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "review_status",
+        "reviewer_role",
+        "change_summary",
+        "approval_gate_id"
+      ],
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "review_status": {
+          "type": "string",
+          "enum": [
+            "not_required",
+            "pending",
+            "approved",
+            "approved_with_changes",
+            "rejected",
+            "needs_revision"
+          ]
+        },
+        "reviewer_role": {
+          "type": "string"
+        },
+        "change_summary": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "approval_gate_id": {
+          "type": "string"
+        }
+      }
     }
   }
 }

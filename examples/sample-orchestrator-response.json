@@ -1,14 +1,37 @@
 {
   "request_summary": "Create a dashboard workflow with backend APIs and an Agentic System observability section.",
-  "workflow_classification": ["dashboard_ui", "api_system", "ai_agent_system"],
+  "workflow_classification": [
+    "dashboard_ui",
+    "api_system",
+    "ai_agent_system",
+    "human_agent_management"
+  ],
   "requirements": {
-    "business": ["Provide a usable dashboard for enterprise workflow visibility."],
-    "functional": ["Generate frontend, backend, API docs, and agent observability."],
-    "non_functional": ["Maintainable TypeScript architecture", "Accessible responsive UI"],
-    "constraints": ["Do not hardcode secrets"],
-    "assumptions": ["Next.js and Node.js are acceptable defaults"]
+    "business": [
+      "Provide a usable dashboard for enterprise workflow visibility."
+    ],
+    "functional": [
+      "Generate frontend, backend, API docs, and agent observability."
+    ],
+    "non_functional": [
+      "Maintainable TypeScript architecture",
+      "Accessible responsive UI"
+    ],
+    "constraints": [
+      "Do not hardcode secrets"
+    ],
+    "assumptions": [
+      "Next.js and Node.js are acceptable defaults"
+    ]
   },
-  "domain_detection": ["frontend", "backend", "llm_agents", "observability", "database"],
+  "domain_detection": [
+    "frontend",
+    "backend",
+    "llm_agents",
+    "observability",
+    "database",
+    "human_governance"
+  ],
   "complexity": {
     "level": "enterprise",
     "reasoning_summary": "Multiple domains and persistent observability justify specialist agents."
@@ -20,16 +43,84 @@
   },
   "execution_topology": {
     "topology_id": "topology.sample",
-    "mode": "multi_agent_parallel",
+    "mode": "human_in_loop",
     "nodes": [],
     "edges": [],
-    "approval_gates": [],
+    "approval_gates": [
+      {
+        "gate_id": "gate.agent-review",
+        "reason": "Human review required before activating generated/custom agents.",
+        "required_before": "agent.registry.activate",
+        "decision_owner": "human.user",
+        "decision_options": [
+          "approved",
+          "approved_with_changes",
+          "rejected",
+          "needs_revision",
+          "custom_agent_added"
+        ],
+        "status": "pending"
+      }
+    ],
     "critical_path": [],
     "parallel_groups": []
   },
-  "schemas_required": ["orchestrator-response.schema.json", "agent.schema.json"],
-  "implementation_plan": ["Analyze workspace", "Generate required agents", "Create project structure", "Validate schemas"],
-  "validation_plan": ["Validate JSON schemas", "Run tests", "Review graph updates"],
-  "risks": ["Over-generation of agents if cost function is ignored"],
-  "outputs": ["Updated orchestrator instruction", "Strict schemas", "Agent registry"]
+  "schemas_required": [
+    "orchestrator-response.schema.json",
+    "agent.schema.json",
+    "human-agent-control.schema.json",
+    "custom-agent-request.schema.json"
+  ],
+  "implementation_plan": [
+    "Analyze workspace",
+    "Generate required agents",
+    "Create project structure",
+    "Validate schemas"
+  ],
+  "validation_plan": [
+    "Validate JSON schemas",
+    "Run tests",
+    "Review graph updates"
+  ],
+  "risks": [
+    "Over-generation of agents if cost function is ignored"
+  ],
+  "outputs": [
+    "Updated orchestrator instruction",
+    "Strict schemas",
+    "Agent registry"
+  ],
+  "human_in_loop": {
+    "control_id": "control.sample",
+    "human_agent": {
+      "human_agent_id": "human.user",
+      "role": "user",
+      "display_name": "User",
+      "permissions": [
+        "approve_agent",
+        "reject_agent",
+        "modify_agent",
+        "add_custom_agent",
+        "disable_agent",
+        "archive_agent",
+        "override_cost_function",
+        "approve_execution"
+      ]
+    },
+    "target_agent_id": "",
+    "action": "review_agent",
+    "decision": "pending",
+    "modifications": [],
+    "custom_agents_to_add": [],
+    "approval_scope": "agent_only",
+    "risk_acceptance": {
+      "accepted": false,
+      "accepted_risks": [],
+      "conditions": []
+    },
+    "notes": [
+      "Human Agent can modify or add custom agents before activation."
+    ],
+    "timestamp": "2026-06-07T17:30:00Z"
+  }
 }

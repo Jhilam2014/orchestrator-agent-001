@@ -11,6 +11,7 @@
     "domain_detection",
     "complexity",
     "agent_decision",
+    "human_in_loop",
     "execution_topology",
     "schemas_required",
     "implementation_plan",
@@ -51,6 +52,7 @@
           "file_processing",
           "integration_automation",
           "human_approval",
+          "human_agent_management",
           "unknown"
         ]
       }
@@ -125,6 +127,7 @@
           "design_systems",
           "documentation",
           "product",
+          "human_governance",
           "operations",
           "finance",
           "sales_crm",
@@ -212,6 +215,9 @@
       "items": {
         "type": "string"
       }
+    },
+    "human_in_loop": {
+      "$ref": "human-agent-control.schema.json"
     }
   }
 }

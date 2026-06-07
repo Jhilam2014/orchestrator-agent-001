@@ -58,7 +58,10 @@
               "approval",
               "validation",
               "tool",
-              "artifact"
+              "artifact",
+              "human_agent",
+              "custom_agent",
+              "human_review"
             ]
           },
           "owner": {
@@ -119,7 +122,10 @@
         "required": [
           "gate_id",
           "reason",
-          "required_before"
+          "required_before",
+          "decision_owner",
+          "decision_options",
+          "status"
         ],
         "properties": {
           "gate_id": {
@@ -134,6 +140,38 @@
             "type": "string",
             "minLength": 1,
             "pattern": "^[a-zA-Z0-9_.:-]+$"
+          },
+          "decision_owner": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_.:-]+$"
+          },
+          "decision_options": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "approved",
+                "approved_with_changes",
+                "rejected",
+                "needs_revision",
+                "custom_agent_added",
+                "disabled",
+                "archived"
+              ]
+            },
+            "minItems": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "approved",
+              "approved_with_changes",
+              "rejected",
+              "needs_revision",
+              "completed"
+            ]
           }
         }
       }

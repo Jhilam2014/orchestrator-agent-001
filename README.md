@@ -26,4 +26,8 @@ This package upgrades the original orchestrator into a workflow-agnostic product
 4. Store registry files in `apps/agentic/registry/`.
 5. Store graph/memory records in Neo4j or JSON fallback during local development.
 6. Validate every generated artifact against the schemas before execution.
-# orchestrator-agent-001
+
+
+## Human Agent in Loop
+
+Use `schemas/human-agent-control.schema.json` to record human approval, rejection, modification, or custom agent additions. Use `schemas/custom-agent-request.schema.json` when a user manually defines one or more custom agents before activation.

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.local/orchestrator/custom-agent-request.schema.json",
+  "title": "Custom Agent Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "request_id",
+    "requested_by",
+    "intent",
+    "agents",
+    "activation_mode",
+    "approval_required",
+    "validation_required",
+    "notes"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-zA-Z0-9_.:-]+$"
+    },
+    "requested_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "intent": {
+      "type": "string",
+      "minLength": 5
+    },
+    "agents": {
+      "type": "array",
+      "items": {
+        "$ref": "agent.schema.json"
+      },
+      "minItems": 1
+    },
+    "activation_mode": {
+      "type": "string",
+      "enum": [
+        "propose_only",
+        "activate_after_approval",
+        "activate_immediately_if_low_risk"
+      ]
+    },
+    "approval_required": {
+      "type": "boolean"
+    },
+    "validation_required": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "schema_validation",
+          "permission_review",
+          "cost_review",
+          "dependency_review",
+          "security_review",
+          "duplicate_capability_review",
+          "human_approval"
+        ]
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

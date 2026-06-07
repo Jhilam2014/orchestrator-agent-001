@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.local/orchestrator/human-agent-control.schema.json",
+  "title": "Human Agent Control Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "control_id",
+    "human_agent",
+    "target_agent_id",
+    "action",
+    "decision",
+    "modifications",
+    "custom_agents_to_add",
+    "approval_scope",
+    "risk_acceptance",
+    "notes",
+    "timestamp"
+  ],
+  "properties": {
+    "control_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-zA-Z0-9_.:-]+$"
+    },
+    "human_agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "human_agent_id",
+        "role",
+        "display_name",
+        "permissions"
+      ],
+      "properties": {
+        "human_agent_id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_.:-]+$"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "user",
+            "admin",
+            "architect",
+            "reviewer",
+            "compliance",
+            "security",
+            "operator",
+            "product_owner"
+          ]
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "approve_agent",
+              "reject_agent",
+              "modify_agent",
+              "add_custom_agent",
+              "disable_agent",
+              "archive_agent",
+              "override_cost_function",
+              "approve_execution",
+              "approve_deployment"
+            ]
+          }
+        }
+      }
+    },
+    "target_agent_id": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "review_agent",
+        "approve_agent",
+        "reject_agent",
+        "modify_agent",
+        "add_custom_agent",
+        "add_multiple_custom_agents",
+        "disable_agent",
+        "archive_agent",
+        "override_cost_function",
+        "request_revision",
+        "approve_execution"
+      ]
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "approved_with_changes",
+        "rejected",
+        "needs_revision",
+        "custom_agent_added",
+        "disabled",
+        "archived"
+      ]
+    },
+    "modifications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field_path",
+          "operation",
+          "old_value_summary",
+          "new_value_summary",
+          "reason"
+        ],
+        "properties": {
+          "field_path": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string",
+            "enum": [
+              "add",
+              "replace",
+              "remove",
+              "merge"
+            ]
+          },
+          "old_value_summary": {
+            "type": "string"
+          },
+          "new_value_summary": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "custom_agents_to_add": {
+      "type": "array",
+      "items": {
+        "$ref": "agent.schema.json"
+      }
+    },
+    "approval_scope": {
+      "type": "string",
+      "enum": [
+        "agent_only",
+        "topology_only",
+        "workflow_execution",
+        "deployment",
+        "billing",
+        "security_sensitive",
+        "global"
+      ]
+    },
+    "risk_acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted",
+        "accepted_risks",
+        "conditions"
+      ],
+      "properties": {
+        "accepted": {
+          "type": "boolean"
+        },
+        "accepted_risks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
