@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.local/orchestrator/cost-function.schema.json",
+  "title": "Cost Function Evaluation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evaluation_id",
+    "functional_importance",
+    "user_value",
+    "business_urgency",
+    "cyclomatic_complexity",
+    "implementation_complexity",
+    "runtime_complexity",
+    "infrastructure_cost",
+    "maintenance_cost",
+    "scalability_requirement",
+    "security_risk",
+    "compliance_risk",
+    "test_burden",
+    "agent_hierarchy_cost",
+    "input_token_cost",
+    "output_token_cost",
+    "context_expansion_risk",
+    "retrieval_overhead",
+    "tool_execution_cost",
+    "duplicate_functionality_risk",
+    "reusability_score",
+    "maintainability_score",
+    "simplification_opportunity",
+    "total_cost_score",
+    "recommendation",
+    "reasoning_summary"
+  ],
+  "properties": {
+    "evaluation_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-zA-Z0-9_.:-]+$"
+    },
+    "functional_importance": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "user_value": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "business_urgency": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "cyclomatic_complexity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "implementation_complexity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "runtime_complexity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "infrastructure_cost": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "maintenance_cost": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "scalability_requirement": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "security_risk": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "compliance_risk": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "test_burden": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "agent_hierarchy_cost": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "input_token_cost": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "output_token_cost": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "context_expansion_risk": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "retrieval_overhead": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "tool_execution_cost": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "duplicate_functionality_risk": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "reusability_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "maintainability_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "simplification_opportunity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "total_cost_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "recommendation": {
+      "type": "string",
+      "enum": [
+        "single_agent_execute",
+        "generate_specialist_agents",
+        "reuse_existing_system",
+        "ask_human_approval",
+        "defer_or_simplify",
+        "reject_unjustified_complexity"
+      ]
+    },
+    "reasoning_summary": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.local/orchestrator/execution-topology.schema.json",
+  "title": "Execution Topology",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "topology_id",
+    "mode",
+    "nodes",
+    "edges",
+    "approval_gates",
+    "critical_path",
+    "parallel_groups"
+  ],
+  "properties": {
+    "topology_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-zA-Z0-9_.:-]+$"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "single_agent",
+        "multi_agent_sequential",
+        "multi_agent_parallel",
+        "human_in_loop",
+        "event_driven",
+        "scheduled",
+        "hybrid"
+      ]
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "node_id",
+          "node_type",
+          "owner",
+          "description",
+          "status"
+        ],
+        "properties": {
+          "node_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_.:-]+$"
+          },
+          "node_type": {
+            "type": "string",
+            "enum": [
+              "task",
+              "agent",
+              "service",
+              "approval",
+              "validation",
+              "tool",
+              "artifact"
+            ]
+          },
+          "owner": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_.:-]+$"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "planned",
+              "ready",
+              "running",
+              "blocked",
+              "completed",
+              "failed",
+              "skipped"
+            ]
+          }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "from",
+          "to",
+          "relationship"
+        ],
+        "properties": {
+          "from": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_.:-]+$"
+          },
+          "to": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_.:-]+$"
+          },
+          "relationship": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "approval_gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "gate_id",
+          "reason",
+          "required_before"
+        ],
+        "properties": {
+          "gate_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_.:-]+$"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "required_before": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_.:-]+$"
+          }
+        }
+      }
+    },
+    "critical_path": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_.:-]+$"
+      }
+    },
+    "parallel_groups": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_.:-]+$"
+        }
+      }
+    }
+  }
+}

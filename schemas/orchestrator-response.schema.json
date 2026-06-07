@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.local/orchestrator/orchestrator-response.schema.json",
+  "title": "Orchestrator Response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "request_summary",
+    "workflow_classification",
+    "requirements",
+    "domain_detection",
+    "complexity",
+    "agent_decision",
+    "execution_topology",
+    "schemas_required",
+    "implementation_plan",
+    "validation_plan",
+    "risks",
+    "outputs"
+  ],
+  "properties": {
+    "request_summary": {
+      "type": "string"
+    },
+    "workflow_classification": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "software_engineering",
+          "business_process",
+          "data_pipeline",
+          "ai_agent_system",
+          "ml_pipeline",
+          "rag_system",
+          "dashboard_ui",
+          "api_system",
+          "database_system",
+          "infrastructure_system",
+          "devops_cicd",
+          "testing_quality",
+          "security_compliance",
+          "documentation",
+          "research_analysis",
+          "content_generation",
+          "communication_email",
+          "crm_sales",
+          "finance_ops",
+          "support_ops",
+          "browser_automation",
+          "file_processing",
+          "integration_automation",
+          "human_approval",
+          "unknown"
+        ]
+      }
+    },
+    "requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "business",
+        "functional",
+        "non_functional",
+        "constraints",
+        "assumptions"
+      ],
+      "properties": {
+        "business": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "functional": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "non_functional": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "domain_detection": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "frontend",
+          "backend",
+          "ai_ml",
+          "llm_agents",
+          "database",
+          "vector_search",
+          "graph_systems",
+          "infrastructure",
+          "devops",
+          "security",
+          "compliance",
+          "testing",
+          "observability",
+          "analytics",
+          "data_engineering",
+          "automation",
+          "browser_automation",
+          "mobile",
+          "realtime",
+          "design_systems",
+          "documentation",
+          "product",
+          "operations",
+          "finance",
+          "sales_crm",
+          "support",
+          "hr",
+          "legal",
+          "content"
+        ]
+      }
+    },
+    "complexity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "reasoning_summary"
+      ],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "enterprise"
+          ]
+        },
+        "reasoning_summary": {
+          "type": "string"
+        }
+      }
+    },
+    "agent_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "reasoning_summary",
+        "agents"
+      ],
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "reasoning_summary": {
+          "type": "string"
+        },
+        "agents": {
+          "type": "array",
+          "items": {
+            "$ref": "agent.schema.json"
+          }
+        }
+      }
+    },
+    "execution_topology": {
+      "$ref": "execution-topology.schema.json"
+    },
+    "schemas_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "implementation_plan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validation_plan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

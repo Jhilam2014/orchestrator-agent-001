@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.local/orchestrator/environment.schema.json",
+  "title": "Environment Variable Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "environment_name",
+    "variables"
+  ],
+  "properties": {
+    "environment_name": {
+      "type": "string",
+      "enum": [
+        "development",
+        "test",
+        "staging",
+        "production"
+      ]
+    },
+    "variables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "required",
+          "secret",
+          "purpose",
+          "default_allowed"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[A-Z0-9_]+$"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "secret": {
+            "type": "boolean"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "default_allowed": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

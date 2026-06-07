@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.local/orchestrator/observability.schema.json",
+  "title": "Observability Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "dashboard_required",
+    "dashboard_sections",
+    "metrics",
+    "logs",
+    "traces",
+    "alerts",
+    "audit_events"
+  ],
+  "properties": {
+    "dashboard_required": {
+      "type": "boolean"
+    },
+    "dashboard_sections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "logs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "traces": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "alerts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "audit_events": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

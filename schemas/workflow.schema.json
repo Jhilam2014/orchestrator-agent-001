@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.local/orchestrator/workflow.schema.json",
+  "title": "Workflow Analysis",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "workflow_id",
+    "workflow_name",
+    "classification",
+    "business_objective",
+    "requirements",
+    "inputs",
+    "outputs",
+    "domains",
+    "constraints",
+    "success_criteria",
+    "approval_required"
+  ],
+  "properties": {
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-zA-Z0-9_.:-]+$"
+    },
+    "workflow_name": {
+      "type": "string"
+    },
+    "classification": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "software_engineering",
+          "business_process",
+          "data_pipeline",
+          "ai_agent_system",
+          "ml_pipeline",
+          "rag_system",
+          "dashboard_ui",
+          "api_system",
+          "database_system",
+          "infrastructure_system",
+          "devops_cicd",
+          "testing_quality",
+          "security_compliance",
+          "documentation",
+          "research_analysis",
+          "content_generation",
+          "communication_email",
+          "crm_sales",
+          "finance_ops",
+          "support_ops",
+          "browser_automation",
+          "file_processing",
+          "integration_automation",
+          "human_approval",
+          "unknown"
+        ]
+      },
+      "minItems": 1
+    },
+    "business_objective": {
+      "type": "string"
+    },
+    "requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "business",
+        "functional",
+        "non_functional",
+        "assumptions"
+      ],
+      "properties": {
+        "business": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "functional": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "non_functional": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "frontend",
+          "backend",
+          "ai_ml",
+          "llm_agents",
+          "database",
+          "vector_search",
+          "graph_systems",
+          "infrastructure",
+          "devops",
+          "security",
+          "compliance",
+          "testing",
+          "observability",
+          "analytics",
+          "data_engineering",
+          "automation",
+          "browser_automation",
+          "mobile",
+          "realtime",
+          "design_systems",
+          "documentation",
+          "product",
+          "operations",
+          "finance",
+          "sales_crm",
+          "support",
+          "hr",
+          "legal",
+          "content"
+        ]
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "success_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_required": {
+      "type": "boolean"
+    }
+  }
+}

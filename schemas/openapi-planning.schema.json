@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.local/orchestrator/openapi-planning.schema.json",
+  "title": "OpenAPI Planning",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "api_name",
+    "base_path",
+    "docs_path",
+    "auth_required",
+    "endpoints",
+    "schemas",
+    "websockets",
+    "export_required"
+  ],
+  "properties": {
+    "api_name": {
+      "type": "string"
+    },
+    "base_path": {
+      "type": "string"
+    },
+    "docs_path": {
+      "type": "string"
+    },
+    "auth_required": {
+      "type": "boolean"
+    },
+    "endpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "method",
+          "path",
+          "summary",
+          "request_schema",
+          "response_schema",
+          "roles"
+        ],
+        "properties": {
+          "method": {
+            "type": "string",
+            "enum": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          },
+          "path": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "request_schema": {
+            "type": "string"
+          },
+          "response_schema": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "websockets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "export_required": {
+      "type": "boolean"
+    }
+  }
+}
